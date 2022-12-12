@@ -1,0 +1,29 @@
+from tkinter import *
+import mysql.connector as mc
+db = mc.connect(host="localhost", user="u0_a673", passwd="root", database="sanket")
+cursor = db.cursor()
+ws = Tk()
+ws.title("chatbot")
+ws.geometry('2200x2200')
+ws['bg'] ='blue'
+
+msg_in = Entry(ws, text="you:")
+msg_in.place(x=150, y=500, width=300, height=30)
+
+
+def msg_out():
+    msg = msg_in.get()
+    Label(ws, text=f'YOU: {msg}', pady=10, bg='red').pack()
+    sql = "SELECT field ,information FROM hospital WHERE field LIKE '%" + msg + "%' or information like '%" + msg + "%' or keyword LIKE '%" + msg + "%'"
+
+    cursor.execute(sql)
+    c1 = [i for i in cursor]
+    Label(ws, text=f'COMP: {c1}', pady=10).pack()
+
+Button(ws, text="Quit", command=ws.destroy).place(x=80, y=500)
+Button(
+    ws,
+    text="Send",
+    command=msg_out
+).place(x=500, y=500)
+ws.mainloop()

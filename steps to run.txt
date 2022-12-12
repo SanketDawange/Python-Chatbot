@@ -1,0 +1,7 @@
+You must have latest python version installed in your machine
+
+1. Paste source code in .py file
+2. Install mysql connector library in your ide or from command line, install tkinter for GUI view
+3. Connect your database to python code
+4. Create a database with table having three columns Field, Information and Keyword
+5. Reay to run
